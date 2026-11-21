@@ -1,6 +1,6 @@
 {
   "title": "Box3D Playground",
-  "author": "OXT-Beyond contributors",
+  "author": "Seth Morrow",
   "description": "A tour of 3D physics with the box3dxt extension: every kind of shape, joints (a rope, a windmill, a sprung platform, a cart on wheels), a sensor gate with hit events, and a hilly terrain, all drawn by the library's own renderer. Click a thing to kick it and drag to look around.",
   "licence": "GPL-3.0-only",
   "main": "Box3D Playground.oxtstack",
