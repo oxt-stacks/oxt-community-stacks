@@ -189,6 +189,14 @@ move: change the tag, the two asset names and the two digests (the
 release's `SHA256SUMS` has them) in a pull request of its own. Checks
 then runs every test, and plays every stack, with the new release.
 
+The tag can also be a web pre-release, `web-<label>`. When OXT-Beyond's
+web engine gains something a shared stack needs (an xTalk Suite library,
+say) before a release carries it, OXT-Beyond's "Web pre-release"
+workflow publishes main's Stack Player and Linux engine under such a tag,
+with a `SHA256SUMS` of its own. Pin it the same way. Its file names carry
+the version main had then, so the tag, not the names, says which build
+it is.
+
 ## The list of xTalk Suite handlers
 
 `tools/suite-handlers.json` tells the checker which handlers belong to
