@@ -1,0 +1,13 @@
+{
+  "title": "Box3D Playground",
+  "author": "Seth Morrow",
+  "description": "A tour of 3D physics with the box3dxt extension: every kind of shape, joints (a rope, a windmill, a sprung platform, a cart on wheels), a sensor gate with hit events, and a hilly terrain. Where the player has render3dxt, the Textured look draws it all with textures, smooth shading and fog; elsewhere box3dxt's own renderer draws it. Click a thing to kick it and drag to look around.",
+  "licence": "GPL-3.0-only",
+  "main": "Box3D Playground.oxtstack",
+  "screenshot": "screenshot.png",
+  "tags": [
+    "3d",
+    "demo",
+    "physics"
+  ]
+}
