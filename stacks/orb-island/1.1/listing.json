@@ -1,0 +1,14 @@
+{
+  "title": "Orb Island",
+  "author": "Seth Morrow",
+  "description": "A small 3D game made with box3dxt's b3k Kit: walk a floating island, find the eight golden orbs and do not fall off the edge. A sweeper arm turns, a wrecking ball swings, a lift rides up a tower and a jump pad throws you onto a floating platform; kick, blast and drop crates. Where the player has render3dxt it is textured and lit, and V swaps the two renderers.",
+  "licence": "GPL-3.0-only",
+  "main": "Orb Island.oxtstack",
+  "screenshot": "screenshot.png",
+  "tags": [
+    "3d",
+    "game",
+    "physics"
+  ],
+  "fill": true
+}
