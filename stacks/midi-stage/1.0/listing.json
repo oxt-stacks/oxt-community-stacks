@@ -1,0 +1,15 @@
+{
+  "title": "MIDI Stage",
+  "author": "Seth Morrow",
+  "description": "Realtime MIDI, through the midixt extension. A player and a stage in one window: the player plays five short scenes (an arpeggio, chords, eight knobs, a pitch bend, drums and program changes), each one a real MIDI message, and the stage draws only what arrives: a piano roll, a keyboard, the knobs, the wheels and a light for each channel. Here the browser keeps MIDI from a shared stack, so the stage reads each message as the player makes it, and says so. On a desktop with midixt, a keyboard of your own lights up beside the player, and Sound plays the player through a synth.",
+  "licence": "GPL-3.0-only",
+  "main": "MIDI Stage.oxtstack",
+  "screenshot": "screenshot.webp",
+  "tags": [
+    "demo",
+    "midi",
+    "music",
+    "sound"
+  ],
+  "fill": true
+}
