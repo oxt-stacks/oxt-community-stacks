@@ -1,0 +1,13 @@
+{
+  "title": "WebP Studio",
+  "author": "Seth Morrow",
+  "description": "Pictures and animations written, read and played, live, by the webpxt extension. It plays by itself: a picture written into smaller and smaller WebP files beside the original, written without loss and read back the same to the last pixel, cut into a window you can see through, and thirty frames written into one animated file and played back from it. Then it is your turn: open a picture or an animation of your own, choose how it is written, drag the line to compare, and save the WebP file.",
+  "licence": "GPL-3.0-only",
+  "main": "WebP Studio.oxtstack",
+  "screenshot": "screenshot.webp",
+  "tags": [
+    "images",
+    "webp",
+    "animation"
+  ]
+}

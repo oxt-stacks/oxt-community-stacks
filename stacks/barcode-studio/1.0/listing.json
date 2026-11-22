@@ -1,0 +1,13 @@
+{
+  "title": "Barcode Studio",
+  "author": "Seth Morrow",
+  "description": "Barcodes made and read, live, by the barcodext extension. It plays by itself: every letter typed makes a new QR code, every kind of barcode the library knows is made and read back, a sheet of six barcodes is read with one call, and two QR codes are stained until one stops reading. Then it is your turn: type your own words, pick a kind, read a picture of your own, and save the barcode as a PNG picture or an SVG drawing.",
+  "licence": "GPL-3.0-only",
+  "main": "Barcode Studio.oxtstack",
+  "screenshot": "screenshot.webp",
+  "tags": [
+    "barcode",
+    "qr code",
+    "tool"
+  ]
+}
