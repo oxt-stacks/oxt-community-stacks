@@ -113,8 +113,9 @@ ADVICE = {
     'registry': 'There is no registry in a web browser.',
     'remote-code': 'Put the stack or the script in the folder you share, so that it can be checked '
                    'with the rest.',
-    'suite-not-on-web': 'The web engine has SodiumXT, CoinXT, Box2Dxt, box3dxt and DataChannelXT, '
-                        'and the NostrXT relay library. ENetXT, TorrentXT and OnionXT need the desktop.',
+    'suite-not-on-web': 'The web engine has SodiumXT, CoinXT, Box2Dxt, box3dxt, render3dxt, DataChannelXT, '
+                        'audioxt, xlsxt, gamepadxt, webpxt and barcodext, and the NostrXT relay library. '
+                        'ENetXT, TorrentXT and OnionXT need the desktop.',
 }
 
 # The same for a library, where it differs

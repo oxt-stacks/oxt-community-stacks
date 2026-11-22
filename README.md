@@ -109,9 +109,10 @@ never changed, because people may already have it.
 - No `shell`, no starting other programs, no AppleScript, no registry,
   no externals of its own.
 - The libraries that come with OXT-Beyond's web engine are fine:
-  SodiumXT, CoinXT, Box2Dxt, box3dxt, DataChannelXT and NostrXT. The ones that
-  have no web version (ENetXT, TorrentXT, OnionXT) are refused, because
-  the stack could not play.
+  SodiumXT, CoinXT, Box2Dxt, box3dxt, render3dxt, DataChannelXT, audioxt,
+  xlsxt, gamepadxt, webpxt, barcodext and NostrXT. ENetXT, TorrentXT and
+  OnionXT have no web version, so a stack that uses them is refused,
+  because it could not play.
 - Using the internet (`put url`), files and JavaScript is fine. The
   stack's page will say so.
 - At most 200 files, 25 MB each and 50 MB together.
