@@ -1,0 +1,9 @@
+{
+  "title": "Sound Stage",
+  "author": "Seth Morrow",
+  "description": "Sound made in script and mixed live by the audioxt extension: a beat on the mixer's own clock, a bee that flies round your head in 3D, a synth with fades, a tape mixed in memory and played back, and your microphone. It starts on its own, and the sound with your first click; press Play all or pick a scene. Headphones help in the 3D scene. The gallery gives no stack a microphone, so that scene says so.",
+  "licence": "GPL-3.0-or-later",
+  "main": "Sound Stage.oxtstack",
+  "screenshot": "screenshot.webp",
+  "tags": ["music", "sound", "3d", "synth"]
+}
