@@ -109,7 +109,8 @@ never changed, because people may already have it.
 - No `shell`, no starting other programs, no AppleScript, no registry,
   no externals of its own.
 - The libraries that come with OXT-Beyond's web engine are fine:
-  SodiumXT, CoinXT, Box2Dxt, DataChannelXT and NostrXT. The ones that
+  SodiumXT, CoinXT, Box2Dxt, box3dxt, render3dxt, audioxt, gamepadxt,
+  xlsxt, webpxt, barcodext, DataChannelXT and NostrXT. The ones that
   have no web version (ENetXT, TorrentXT, OnionXT) are refused, because
   the stack could not play.
 - Using the internet (`put url`), files and JavaScript is fine. The

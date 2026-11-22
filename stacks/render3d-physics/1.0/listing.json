@@ -1,0 +1,13 @@
+{
+  "title": "Render3D Physics",
+  "author": "Seth Morrow",
+  "description": "Crates, balls and gems fall, tumble and pile up: box3dxt simulates them and render3dxt draws them, textured and lit, into an ordinary image up to sixty times a second. Drag the picture to walk round the pile, turn the wheel to come closer, click a thing to kick it, and drop ten more at once.",
+  "licence": "GPL-3.0-only",
+  "main": "Render3D Physics.oxtstack",
+  "screenshot": "screenshot.webp",
+  "tags": [
+    "3d",
+    "demo",
+    "physics"
+  ]
+}

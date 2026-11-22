@@ -1,0 +1,9 @@
+{
+  "title": "Spreadsheet Studio",
+  "author": "Seth Morrow",
+  "description": "Real Excel files, made and read back in your browser. It opens playing four short scenes: a sheet fills itself and gets its colours, money format and chart; formulas and today's date; all fifteen kinds of chart; ten thousand cells written and read back, timed. Then try it yourself: type a table, pick fonts and colours, add formulas, dates, charts and a picture, and download the .xlsx, or open any .xlsx to look inside it.",
+  "licence": "GPL-3.0-only",
+  "main": "Spreadsheet Studio.oxtstack",
+  "screenshot": "screenshot.webp",
+  "tags": ["spreadsheet", "excel", "tool"]
+}
