@@ -2,13 +2,18 @@
 reading the engine's dump."""
 import base64
 import os
+import re
 import sys
 import tempfile
 import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import lcscan  # noqa: E402
 import scan  # noqa: E402
+
+README = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+                      'README.md')
 
 
 def b64(text):
@@ -206,6 +211,46 @@ class StackFiles(unittest.TestCase):
             with self.subTest(path=path):
                 self.assertEqual(len(self.problems('Lib,' + path)), 1)
         self.assertEqual(len(self.problems('no comma here')), 1)
+
+
+class WebLibraries(unittest.TestCase):
+    """The libraries of the xTalk Suite that the web engine has are named
+    twice by hand, in the checker's advice to a stack that uses one it
+    lacks and in the README's rules, and both change when tools/pins.json
+    moves to a web engine with more. A stranger may read either, so they
+    must name the same ones, and the ones they send to the desktop must be
+    the ones the checker refuses (suite-handlers.json)."""
+
+    @staticmethod
+    def named(text):
+        return {w.lower() for w in re.findall(r'\b[A-Za-z0-9]{3,}xt\b', text, re.I)}
+
+    def readme_rule(self):
+        with open(README, encoding='utf-8') as f:
+            text = f.read()
+        start = text.index("- The libraries that come with OXT-Beyond's web engine")
+        return text[start:text.index('\n- ', start)]
+
+    def refused(self):
+        return {member for member, does in lcscan.load_suite().values() if does == 'blocked'}
+
+    def test_the_advice_and_the_readme_name_the_same_libraries(self):
+        advice = self.named(scan.ADVICE['suite-not-on-web'])
+        self.assertEqual(advice, self.named(self.readme_rule()))
+        self.assertGreater(len(advice), len(self.refused()))
+
+    def test_the_ones_sent_to_the_desktop_are_the_ones_refused(self):
+        advice = scan.ADVICE['suite-not-on-web']
+        self.assertEqual(self.named(advice[advice.rindex('. ') + 2:]), self.refused())
+        refused_here = re.search(r'\(([^)]*)\) are refused', self.readme_rule())
+        self.assertIsNotNone(refused_here)
+        self.assertEqual(self.named(refused_here.group(1)), self.refused())
+
+    def test_midixt_is_on_the_web(self):
+        # web-2026.11.22's web engine links midixt in, over the browser's
+        # Web MIDI (OXT-Beyond pull request 630)
+        self.assertIn('midixt', self.named(scan.ADVICE['suite-not-on-web']) - self.refused())
+        self.assertIn('midixt', self.named(self.readme_rule()) - self.refused())
 
 
 if __name__ == '__main__':
