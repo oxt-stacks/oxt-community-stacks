@@ -1,0 +1,16 @@
+{
+  "title": "Gamepad Lab",
+  "author": "Seth Morrow",
+  "description": "Game controllers, through the gamepadxt extension. It opens playing five short showcases on a touch pad made in software: every button, the sticks and the dead zone, rumble with the light and player numbers, a button remapped, and a small game. Press a button on a controller of your own and it takes over: each button, stick and trigger lights up as it moves, beside the events each poll gathers. Drag the touch pad's sticks, or drive it with the arrow keys and Z X A S. Where gamepadxt is missing, the showcases play as a recording.",
+  "licence": "GPL-3.0-only",
+  "main": "Gamepad Lab.oxtstack",
+  "screenshot": "screenshot.webp",
+  "tags": [
+    "controller",
+    "demo",
+    "game",
+    "gamepad",
+    "input"
+  ],
+  "fill": true
+}
