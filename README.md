@@ -110,9 +110,9 @@ never changed, because people may already have it.
   no externals of its own.
 - The libraries that come with OXT-Beyond's web engine are fine:
   SodiumXT, CoinXT, Box2Dxt, box3dxt, render3dxt, audioxt, gamepadxt,
-  xlsxt, webpxt, barcodext, DataChannelXT and NostrXT. The ones that
-  have no web version (ENetXT, TorrentXT, OnionXT) are refused, because
-  the stack could not play.
+  midixt, xlsxt, webpxt, barcodext, DataChannelXT and NostrXT. The ones
+  that have no web version (ENetXT, TorrentXT, OnionXT) are refused,
+  because the stack could not play.
 - Using the internet (`put url`), files and JavaScript is fine. The
   stack's page will say so.
 - At most 200 files, 25 MB each and 50 MB together.
