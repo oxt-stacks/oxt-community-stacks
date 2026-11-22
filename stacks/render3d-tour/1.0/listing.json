@@ -1,0 +1,13 @@
+{
+  "title": "Render3D Tour",
+  "author": "Seth Morrow",
+  "description": "Ten small 3D scenes drawn into an ordinary image by render3dxt, the xTalk Suite's renderer: a sun and its planets, shapes, textures, materials, coloured lamps, a model read from text, hills built corner by corner, fog, clicking on things and 225 cubes on a wave. Click a planet to fly to it, and drag the picture to look round.",
+  "licence": "GPL-3.0-only",
+  "main": "Render3D Tour.oxtstack",
+  "screenshot": "screenshot.webp",
+  "tags": [
+    "3d",
+    "demo",
+    "graphics"
+  ]
+}
