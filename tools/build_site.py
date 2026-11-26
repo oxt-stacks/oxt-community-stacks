@@ -176,6 +176,101 @@ def collect(stacks_dir, engine, no_network=False, log=print):
     return stacks, refused
 
 
+# ---------------------------------------------------------------- the family bar
+
+# The same slim strip of links across the top of the three sites of the
+# OpenXTalk family: OXT-Beyond's (its tools/pages/family.py, the master
+# copy), the xTalk Suite's extensions page (its
+# tools/build-extensions-site.py), and this gallery. FAMILY, FAMILY_CSS,
+# MARK and family_bar are copies of the master's: change the three
+# together. Its words are this file's own and its addresses fixed ones,
+# escaped all the same; it is inline and draws its mark in SVG, so it
+# asks no host for anything. The page a stack plays on has no bar: the
+# stack has the window.
+
+BEYOND = 'https://sethmorrowsoftware.github.io/OpenXTalk-Beyond/'
+GALLERY = 'https://oxt-stacks.github.io/oxt-community-stacks/'
+FORUM = 'https://openxtalk.org/forum/'
+OPENXTALK = 'https://openxtalk.org/'
+
+# (key, words, address): the bar's links, in their order, the same on
+# every site. A site gives its own pages by key (relative, so a preview
+# or a fork links itself) and leaves out a key it maps to None.
+FAMILY = (
+    ('beyond', 'OXT-Beyond', BEYOND),
+    ('ide', 'Web IDE', BEYOND + 'ide/'),
+    ('lessons', 'Lessons', BEYOND + 'lessons/'),
+    ('extensions', 'Extensions', BEYOND + 'extensions/'),
+    ('stacks', 'Community stacks', GALLERY),
+    ('forum', 'Forum', FORUM),
+)
+
+# The bar's look, whole: every rule is under .oxt-family, and it resets
+# what a page's own rules for nav, ul, li and a could give it, so it looks
+# the same on every page of every site, light or dark.
+FAMILY_CSS = (
+    '.oxt-family{position:relative;display:flex;align-items:center;gap:0 10px;margin:0;'
+    'padding:0 max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left));'
+    'min-height:40px;background:#0a0f1a;border-bottom:1px solid rgba(255,255,255,.09);color:#c3cddc;'
+    'font:500 13.5px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,sans-serif;letter-spacing:0;'
+    'text-align:left;white-space:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-font-smoothing:antialiased;'
+    # a row longer than a phone scrolls sideways; its right edge fades to
+    # say so (on a wide window the edge is empty, and the fade unseen)
+    '-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);'
+    'mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}'
+    '.oxt-family::-webkit-scrollbar{display:none}'
+    '.oxt-family a{color:inherit;font:inherit;letter-spacing:inherit;text-transform:none;text-decoration:none;'
+    'background:none;box-shadow:none;border:0;border-radius:0;margin:0;min-height:0}'
+    '.oxt-family .oxt-family-home{display:inline-flex;flex:none;align-items:center;gap:8px;padding:8px 6px 8px 0;'
+    'color:#eef3ff;font-weight:700}'
+    '.oxt-family .oxt-family-home svg{display:block;width:22px;height:22px;flex:none}'
+    '.oxt-family ul{display:flex;flex:none;gap:0;margin:0;padding:0;list-style:none;background:none}'
+    '.oxt-family li{margin:0;padding:0;list-style:none}'
+    '.oxt-family li::before{content:none}'
+    '.oxt-family li a{display:block;padding:12px 9px 10px;border-bottom:2px solid transparent}'
+    '.oxt-family li:last-child a{margin-right:20px}'
+    '.oxt-family li a:hover{color:#fff;border-bottom-color:rgba(255,179,71,.55)}'
+    '.oxt-family li a[aria-current="page"]{color:#fff;border-bottom-color:#ff7a00}'
+    '.oxt-family a:focus-visible{outline:2px solid #ffb347;outline-offset:-3px;border-radius:4px}'
+    '@media (max-width:640px){.oxt-family .oxt-family-home span{display:none}}'
+    '@media print{.oxt-family{display:none}}'
+)
+
+# The family's mark: a small tile in OXT-Beyond's fire, with its bolt
+MARK = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+        '<defs><linearGradient id="oxt-family-fire" x1="0" y1="0" x2="1" y2="1">'
+        '<stop offset="0" stop-color="#ffc24d"/><stop offset=".55" stop-color="#ff7700"/>'
+        '<stop offset="1" stop-color="#ff3d00"/></linearGradient></defs>'
+        '<rect x="1" y="1" width="22" height="22" rx="6" fill="url(#oxt-family-fire)"/>'
+        '<path d="M13.6 4.5 7.5 13.2h4.1l-1.3 6.3 6.2-8.8h-4.1z" fill="#1a1206"/></svg>')
+
+
+SHOW_CURRENT = ('<script>(function (n) {'
+                'var c = n && n.querySelector(\'[aria-current="page"]\');'
+                'if (c && n.scrollWidth > n.clientWidth) n.scrollLeft = c.offsetLeft - 48;'
+                '})(document.currentScript && document.currentScript.previousElementSibling);</script>')
+
+
+def family_bar(current=None, links=None):
+    """The bar, as HTML: its <style> and its <nav>. `current` is the key
+    of the part the page is in, which the bar marks for the eye and for
+    screen readers; `links` maps a key to this site's own address for it,
+    or to None to leave it out."""
+    links = links or {}
+    items = []
+    for key, words, href in FAMILY:
+        href = links.get(key, href)
+        if href is None:
+            continue
+        items.append('<li><a href="%s"%s>%s</a></li>' % (
+            html.escape(href, quote=True), ' aria-current="page"' if key == current else '', html.escape(words)))
+    # On a phone the row scrolls sideways: the one line of script after it
+    # scrolls it so that the part the page is in shows, not only the first
+    return ('<style>%s</style>\n<nav class="oxt-family" aria-label="OpenXTalk sites">'
+            '<a class="oxt-family-home" href="%s">%s<span>OpenXTalk</span></a><ul>%s</ul></nav>\n%s\n'
+            % (FAMILY_CSS, OPENXTALK, MARK, ''.join(items), SHOW_CURRENT))
+
+
 # ---------------------------------------------------------------- pages
 
 NAV = [('index.html', 'All stacks'), ('libraries.html', 'Libraries'), ('safety.html', 'Is it safe?'),
@@ -202,7 +297,7 @@ def page(title, body, root='', description='', here=None):
 </head>
 <body>
 <a class="skip" href="#main">Skip to the content</a>
-<header class="top">
+%(family)s<header class="top">
   <a class="brand" href="%(root)sindex.html"><img src="%(root)sassets/mark.svg" alt="" width="36" height="36"><span>OXT Community Stacks</span></a>
   <nav aria-label="Site">
     %(nav)s
@@ -217,6 +312,9 @@ def page(title, body, root='', description='', here=None):
 </body>
 </html>
 ''' % {'title': esc(title), 'body': body, 'root': root, 'oxt': OXT_URL, 'nav': nav,
+       # this gallery is the family's Community stacks, linked as its own
+       # front page
+       'family': family_bar('stacks', {'stacks': root + 'index.html'}),
        'description': '<meta name="description" content="%s">\n' % esc(description) if description else ''}
 
 
@@ -282,6 +380,7 @@ def gallery_page(entries):
     chips = ''.join('<button type="button" class="chip" data-tag="%s" aria-pressed="false">%s <span class="n">%d</span></button>'
                     % (esc(t), esc(t), n) for t, n in common_tags(entries))
     body = '''<section class="hero">
+  <p class="eyebrow">Made with OXT-Beyond</p>
   <h1>Stacks to play, made by people like you</h1>
   <p>Press <b>Play</b> and a stack opens right here in your browser. There is nothing to install, and a stack cannot reach your files or your computer. <a href="safety.html">How that works.</a></p>
 </section>
