@@ -37,6 +37,12 @@ def fake_player(root):
     return player
 
 
+def without_family_bar(text):
+    """A page without the OpenXTalk family bar, which marks the gallery as
+    the family's Community stacks on every page and links the forum."""
+    return re.sub(r'<nav class="oxt-family".*?</nav>', '', text, flags=re.S)
+
+
 class Site(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -260,7 +266,8 @@ class Site(unittest.TestCase):
         ways = [share.index(words) for words in
                 ('File &gt; Share Stack...', 'If your File menu has no Share Stack', 'If you use GitHub')]
         self.assertEqual(ways, sorted(ways))
-        self.assertEqual(share.count('href="%s"' % build_site.FORUM_URL), 2)
+        # (in the page's own words; the family bar links the forum too)
+        self.assertEqual(without_family_bar(share).count('href="%s"' % build_site.FORUM_URL), 2)
         self.assertNotIn('on its way', share)
 
     def test_every_link_of_the_site_leads_somewhere(self):
@@ -277,13 +284,42 @@ class Site(unittest.TestCase):
 
     # -- finding your way: for people new to stacks and for xTalk developers
 
+    def test_every_page_but_the_player_has_the_family_bar(self):
+        """The OpenXTalk family bar: the same strip of links as on
+        OXT-Beyond's site and the extensions page, after the skip link,
+        this gallery marked as its Community stacks and linked as its own
+        top, the other sites at their addresses, and nothing asked of any
+        host. The page a stack plays on leaves the window to the stack."""
+        for rel, top in (('index.html', 'index.html'), ('share.html', 'index.html'), ('safety.html', 'index.html'),
+                         ('s/alpha/index.html', '../../index.html'),
+                         ('s/alpha/1.10/source.html', '../../../index.html')):
+            text = self.read(rel)
+            self.assertEqual(text.count('<nav class="oxt-family"'), 1, rel)
+            self.assertLess(text.index('<a class="skip"'), text.index('<nav class="oxt-family"'), rel)
+            self.assertLess(text.index('<nav class="oxt-family"'), text.index('<header class="top">'), rel)
+            bar = text[text.index('<nav class="oxt-family"'):]
+            bar = bar[:bar.index('</nav>')]
+            self.assertEqual(re.findall(r'href="([^"]*)"', bar), [
+                'https://openxtalk.org/', 'https://sethmorrowsoftware.github.io/OpenXTalk-Beyond/',
+                'https://sethmorrowsoftware.github.io/OpenXTalk-Beyond/ide/',
+                'https://sethmorrowsoftware.github.io/OpenXTalk-Beyond/lessons/',
+                'https://sethmorrowsoftware.github.io/OpenXTalk-Beyond/extensions/', top,
+                'https://openxtalk.org/forum/'], rel)
+            self.assertIn('<a href="%s" aria-current="page">Community stacks</a>' % top, bar, rel)
+            self.assertNotIn('src=', bar, rel)
+        self.assertNotIn('oxt-family', self.read('s/alpha/play.html'))
+        self.assertNotIn('url(', build_site.FAMILY_CSS)
+        for rule in re.findall(r'([^{}]+)\{', re.sub(r'@media[^{]*\{', '', build_site.FAMILY_CSS)):
+            for one in rule.split(','):
+                self.assertTrue(one.strip().startswith('.oxt-family'), one)
+
     def test_every_page_has_a_skip_link_and_says_where_you_are(self):
         for rel, here in (('index.html', 'index.html'), ('share.html', 'share.html'), ('safety.html', 'safety.html'),
                           ('s/alpha/index.html', None), ('s/alpha/1.10/source.html', None)):
             text = self.read(rel)
             self.assertIn('<a class="skip" href="#main">', text, rel)
             self.assertIn('<main id="main"', text, rel)
-            current = re.findall(r'<a href="[^"]*?([a-z]+\.html)"[^>]*aria-current="page"', text)
+            current = re.findall(r'<a href="[^"]*?([a-z]+\.html)"[^>]*aria-current="page"', without_family_bar(text))
             self.assertEqual(current, [here] if here else [], rel)
 
     def test_the_gallery_can_be_narrowed_by_words_and_tags(self):
