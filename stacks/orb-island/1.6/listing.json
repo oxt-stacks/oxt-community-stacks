@@ -1,0 +1,14 @@
+{
+  "title": "Orb Island",
+  "author": "Seth Morrow",
+  "description": "A 3D game made with box3dxt's b3k Kit: a living, floating island with three levels to climb and 26 golden orbs to find without falling into the sea. Gulls wheel overhead, songbirds hop on the grass and fly up into the trees as you come near, butterflies flutter and fish leap off the shore. Ride lifts, cross crumbling planks, dodge flying enemies, find the feather for a double jump and open the vault. Keyboard, mouse or gamepad, with birdsong and a new island tune every time you play.",
+  "licence": "GPL-3.0-only",
+  "main": "Orb Island.oxtstack",
+  "screenshot": "screenshot.png",
+  "tags": [
+    "3d",
+    "game",
+    "physics"
+  ],
+  "fill": true
+}
