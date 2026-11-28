@@ -1,14 +1,14 @@
 {
  "engine": {
-  "tag": "web-2026.11.22",
-  "asset": "OXT-Beyond-0.2.8-dp.2.1-linux-x86_64-binaries.tar.xz",
-  "sha256": "c0da68b969a9e39b5e6900a00c1105be55ec594d158add7989d1de0e8477c060",
+  "tag": "web-2026.11.28",
+  "asset": "OXT-Beyond-0.2.8-dp.3-linux-x86_64-binaries.tar.xz",
+  "sha256": "7084f84b7ce54b83ddcefe706ed270e8d3172d2efb0152ecf89c402e5f0b5686",
   "member": "linux-x86_64-bin/LiveCode-Community"
  },
  "player": {
-  "tag": "web-2026.11.22",
-  "asset": "OXT-Beyond-0.2.8-dp.2.1-web-player.zip",
-  "sha256": "c44378cb695b7c6bd9427c9bf7215a9f956835a66223c4d76c578b48cf2d56e6",
+  "tag": "web-2026.11.28",
+  "asset": "OXT-Beyond-0.2.8-dp.3-web-player.zip",
+  "sha256": "acec3f59d9642288f78867948ec80f3884b84230824bf49adae9f387afdf3194",
   "member": "StackPlayer"
  },
  "repository": "SethMorrowSoftware/OpenXTalk-Beyond"
